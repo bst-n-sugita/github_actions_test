@@ -31,7 +31,7 @@ jobs:
           --data '{
             "state": "success",
             "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
-            "context": "mock-playwright-test-hoge"
+            "context": "mock-playwright"
           }'
       - name: Update GitHub Actions status (failure)
         if: ${{ failure() }}
@@ -44,5 +44,5 @@ jobs:
           --data '{
             "state": "failure",
             "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
-            "context": "mock-playwright-test-hoge"
+            "context": "mock-playwright"
           }'
