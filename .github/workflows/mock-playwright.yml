@@ -15,32 +15,34 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Sleep
-        run: sleep 5
+        run: sleep 3
 
       - name: Run a one-line script
         run: echo Successfully ran mock-playwright!
 
-      # - name: Update GitHub Actions status (success)
-      #   if: ${{ success() }}
-      #   # ref: https://docs.github.com/en/rest/commits/statuses#create-a-commit-status
-      #   run: |
-      #     curl --request POST \
-      #     --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-      #     --header 'authorization: Bearer ${{ github.token }}' \
-      #     --header 'content-type: application/json' \
-      #     --data '{
-      #       "state": "success",
-      #       "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-      #     }'
-      # - name: Update GitHub Actions status (failure)
-      #   if: ${{ failure() }}
-      #   # ref: https://docs.github.com/en/rest/commits/statuses#create-a-commit-status
-      #   run: |
-      #     curl --request POST \
-      #     --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-      #     --header 'authorization: Bearer ${{ github.token }}' \
-      #     --header 'content-type: application/json' \
-      #     --data '{
-      #       "state": "failure",
-      #       "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-      #     }'
+      - name: Update GitHub Actions status (success)
+        if: ${{ success() }}
+        # ref: https://docs.github.com/en/rest/commits/statuses#create-a-commit-status
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --header 'authorization: Bearer ${{ github.token }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "state": "success",
+            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "context": "mock-playwright-test-hoge"
+          }'
+      - name: Update GitHub Actions status (failure)
+        if: ${{ failure() }}
+        # ref: https://docs.github.com/en/rest/commits/statuses#create-a-commit-status
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --header 'authorization: Bearer ${{ github.token }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "state": "failure",
+            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "context": "mock-playwright-test-hoge"
+          }'
