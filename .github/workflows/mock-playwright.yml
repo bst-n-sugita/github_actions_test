@@ -16,4 +16,4 @@ jobs:
       - name: Sleep
         run: sleep 5
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: echo Successfully ran mock-playwright!
