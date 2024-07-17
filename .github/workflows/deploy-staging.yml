@@ -1,0 +1,17 @@
+name: mock-deploy-test
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  mock-deploy:
+    # name: Deploy app
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Run a one-line script
+      run: echo Hello, world!
