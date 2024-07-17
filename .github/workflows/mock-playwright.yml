@@ -1,0 +1,19 @@
+name: mock-playwright-test
+
+on:
+  workflow_run:
+    workflows: [mock-deploy-test]
+    types: [completed]
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  mock-playwright:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Sleep
+        run: sleep 5
+      - name: Run a one-line script
+        run: echo Successfully ran mock-playwright!
