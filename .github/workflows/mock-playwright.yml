@@ -18,7 +18,8 @@ jobs:
         run: sleep 3
 
       - name: Run a one-line script
-        run: echo Successfully ran mock-playwright!
+        # run: echo Successfully ran mock-playwright!
+        run: hoge
 
       - name: Update GitHub Actions status (success)
         if: ${{ success() }}
